@@ -1,0 +1,87 @@
+<!------ Include the above in your HEAD tag ---------->
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+    <link th:href="@{/common.css}"
+          rel="stylesheet">
+    <link href="LoginStyles.css" rel="stylesheet">
+    <title>Home Page</title>
+</head>
+<style>
+    .img-report {
+        width: 50px;
+        height: 50px;
+    }
+
+    .search {
+        width: 30%;
+        margin: 10px 0 0 20px;
+    }
+</style>
+<body >
+<div th:insert="~{commonNav :: commonNav()}"></div>
+<main class="my-form bg-image">
+    <div class="container-fluid">
+        <div class="row"></div>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">Patient List</div>
+                    <div class="input-group search">
+                        <input class="form-control"
+                               type="search"
+                               id="searchInput"
+                               placeholder="Search for..."/>
+
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary"
+                                    id="searchBtn"
+                                    type="button">Search
+                        </button>
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-hover" id="tableid">
+                            <thead>
+                            <tr>
+                                <th scope="col">Patient Name</th>
+                                <th scope="col">Test Center</th>
+                                <th scope="col">Email Id</th>
+                                <th scope="col">Report</th>
+                                <th scope="col"></th>
+                            </tr>
+                            </thead>
+                            <tbody id="tb_id">
+
+                            </tbody>
+                        </table>
+                        <div class="col-md-6 offset-md-5">
+                            <button type="button"
+                                    class="btn btn-primary btn-login"
+                                    id="confirm_id"> Update Record
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<script th:src="@{/jquery.min.js}"></script>
+<script th:src="@{/ajaxFn.js}"></script>
+<script th:src="@{/HC_PatientList.js}"></script>
+</body>
+
+</html>

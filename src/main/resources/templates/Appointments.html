@@ -1,0 +1,175 @@
+<!------ Include the above in your HEAD tag ---------->
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- External CSS -->
+    <link href="PTestStyles.css" rel="stylesheet">
+    <title>Appointment History</title>
+</head>
+
+<body >
+<!-- Bootstrap Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">COVIDULE</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+            aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class=" navbar-nav ml-auto float-right">
+            <li class="nav-item ">
+                <a class="nav-link text-white" th:href="@{/Patient_HomePage}">Home</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link text-white" th:href="@{/Appointments}">Appointments</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link text-white" th:href="@{/PHome}">Portal</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link text-white" th:href="@{/signout}">Sign Out</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<main class="my-form ">
+    <div class="container-fluid">
+        <div class="row"></div>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="col-md-auto">
+                    <div class="card">
+                        <div class="card-header"><B>Appointment History</B></div>
+                        <div class="card-body">
+                            <form id="myhelloForm" th:action="@{/patientindscrn}" th:object="${apptselec}" method="post" >
+                            <div class="card " id="upcomingCard" >
+                                <div class="card-header"><B>Upcoming Appointments</B></div>
+                                <div class="card-body">
+                                    <div>
+                                        <table class="table table-striped table-bordered table-hover">
+                                            <thead class="thead-dark">
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Type</th>
+                                                <th>Test / Vaccination </th>
+                                                <th>Time Slot</th>
+                                                <th>Test Center</th>
+                                                <th>Select</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="future-id">
+                                            <tr th:each="Appointments: ${listAppsFuture}">
+                                                <td th:text="${Appointments.Date}" >Date</td>
+                                                <td th:text="${Appointments.Type}">Type</td>
+                                                <td th:text="${Appointments.Test_Type}">Test Type</td>
+                                                <td th:text="${Appointments.Timeslot}">Time Slot</td>
+                                                <td th:text="${Appointments.Test_center}">Test Center</td>
+
+
+                                                <td>
+                                                    <input type="radio" th:field="*{id}" class="form-check form-check-inline"  style="text-align:center" name = "apptselect" th:value="${Appointments.getId()}" />
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card " id="PastCard" >
+                                <div class="card-header"><B>Past Appointments</B></div>
+                                <div class="card-body">
+
+                                    <div>
+                                        <table class="table table-striped table-bordered table-hover">
+                                            <thead class="thead-dark">
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Type</th>
+                                                <th>Test / Vaccination </th>
+                                                <th>Time Slot</th>
+                                                <th>Test Center</th>
+                                                <th>Select</th>
+                                            </tr>
+
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="Appointments: ${listAppsPast}">
+                                                <td th:text="${Appointments.Date}" >Date</td>
+                                                <td th:text="${Appointments.Type}">Type</td>
+                                                <td th:text="${Appointments.Test_Type}">Test Type</td>
+                                                <td th:text="${Appointments.Timeslot}">Time Slot</td>
+                                                <td th:text="${Appointments.Test_center}">Test Center</td>
+                                                <td>
+                                                    <input type="radio" th:field="*{id}" class="form-check form-check-inline"  style="text-align:center" name = "apptselect" th:value="${Appointments.getId()}" />
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        <div class="col-md-6 offset-md-5">
+                            <button type="button" class="btn btn-primary btn-login" id="view-status" onclick="myval()" > View Status </button>
+                        </div>
+
+
+                        </form>
+                        </div>
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>-->
+<!--<script src="Appointment.js"></script>-->
+
+<script>
+    function myval()
+    {
+            var apptselect = document.forms[0];
+            var i;
+            noneselected = false;
+            for (i = 0; i < apptselect.length; i++)
+            {
+                if ((apptselect[i].checked)==true)
+                {
+                    noneselected = false;
+                    break;
+                }
+                else
+                {
+                    noneselected = true;
+                }
+
+            }
+
+            if(noneselected == true)
+            {
+                alert("Please select an appointment.");
+                return
+            }
+
+
+        document.getElementById("myhelloForm").submit();
+    }
+</script>
+</body>
+
+</html>

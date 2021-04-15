@@ -1,0 +1,188 @@
+<!------ Include the above in your HEAD tag ---------->
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Fonts -->
+    <!--<link rel="icon" href="Favicon.png">-->
+    <!-- Bootstrap CSS
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link href="PTestStyles.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <!- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
+    </script>
+    <link href="PTestStyles.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"
+            integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"
+            integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous">
+    </script>
+    <title>PortaL</title>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand float-left" href="#">COVIDULE</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto float-right">
+
+                <li class="nav-item ">
+                    <a class="nav-link text-white" th:href="@{/Patient_HomePage}">Home</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link text-white" th:href="@{/Appointments}">Appointments</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link text-white" th:href="@{/PHome}">Portal</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link text-white" th:href="@{/signout}">Sign Out</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<main class="my-form">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header"><B>Patient Profile</B></div>
+                    <div class="card-body">
+                        <form id="myPhomeForm" th:action="@{/update_register}" th:object="${user}" method="post" >
+
+
+<!--                            onsubmit="return validform()" action="success.php" method=""-->
+<!--                            th:field="*{Name}"-->
+                            <div class="form-group row">
+                                <label for="full_name" class="col-md-4 col-form-label text-md-right">Full
+                                    Name</label>
+                                <div class="col-md-6">
+                                    <input type="text" th:name="Name" id="full_name" class="form-control" name="full-name" th:value="${AUser.getName()}" readonly = true>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail
+                                    Address</label>
+                                <div class="col-md-6">
+                                    <input type="text" th:name="email"  id="email_address" class="form-control" name="email-address" th:value="${AUser.getEmail()}"  readonly = true>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="phone_number" class="col-md-4 col-form-label text-md-right">Phone
+                                    Number</label>
+                                <div class="col-md-6">
+                                    <input type="text" th:name="phone" id="phone_number" class="form-control" name="Phone Number" th:value="${AUser.getPhone()}" readonly = true>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="present_address" class="col-md-4 col-form-label text-md-right">
+                                    Address</label>
+                                <div class="col-md-6">
+                                    <input type="text" th:name="address" id="present_address" class="form-control" th:value="${AUser.getAddress()}" readonly = true>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-4"></div>
+                                <div class="col-2">
+
+                                    <button type="button" class="btn btn-primary btn-login" onclick="myFunction1()" > Edit </button>
+
+                                </div>
+
+                                <div class="col-2 ">
+                                    <button type="button" id="save" value="save" onclick="myValidationFunction1()" class="btn btn-primary btn-login"  > Save </button>
+<!--                                    <button type="button" id="register" value="Register" onclick="myValidationFunction()" class="btn btn-primary btn-login" >-->
+<!--                                        Save-->
+<!--                                    </button>-->
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>-->
+<script>
+function myFunction1()
+{
+    document.getElementById("full_name").readOnly = false;
+    document.getElementById("email_address").readOnly = true;
+    document.getElementById("phone_number").readOnly = false;
+    document.getElementById("present_address").readOnly = false;
+}
+</script>
+
+
+<script>
+    function myValidationFunction1()
+    {
+        nam = document.getElementById("full_name").value;
+        em = document.getElementById("email_address").value;
+        ph = document.getElementById("phone_number").value;
+        ad = document.getElementById("present_address").value;
+
+        var numbers = /^[0-9]+$/;
+
+        var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+        if ((nam.length == 0) || (em.length == 0)  || (ph.length == 0) || (ad.length == 0))
+        {
+            alert("The required Fields are not filled");
+
+            return;
+        }
+
+        if(!(em.match(mailformat)))
+        {
+            alert("You have entered an invalid email address!");
+            return;
+        }
+
+
+
+        if (ph.length !== 10)
+        {
+            alert("Must be 10 Digits");
+            return;
+        }
+
+
+        if(!(ph.match(numbers)))
+        {
+            alert('Please input numeric characters only');
+            return;
+        }
+
+        document.getElementById("myPhomeForm").submit();
+
+    }
+
+</script>
+
+
+</body>
+
+</html>

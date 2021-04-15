@@ -1,0 +1,199 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>View Appointment Calendar</title>
+
+    <meta name="description" content="Calendar">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/appt.css}">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<style>
+    .type {
+        text-align: center;
+        text-align-last: center;
+    }
+</style>
+<body style="background-color: black">
+<div th:insert="~{commonNav :: commonNav()}"></div>
+<main class="my-form ">
+    <input hidden th:value="${id}" id="centerId"/>
+    <div class="container-fluid">
+        <div class="row"></div>
+        <div class="row justify-content-center">
+            <div class="card-wrapper">
+                <div class="card">
+                    <div class="card-header">Appointments</div>
+                    <div class="card-body">
+                        <div class="content">
+                            <div class="calendar-container">
+                                <div class="calendar">
+                                    <div class="year-header">
+                                        <span class="left-button" id="prev"> &lang; </span>
+                                        <span class="year" id="label"></span>
+                                        <span class="right-button" id="next"> &rang; </span>
+                                    </div>
+                                    <table class="months-table">
+                                        <tbody>
+                                        <tr class="months-row">
+                                            <td class="month">Jan</td>
+                                            <td class="month">Feb</td>
+                                            <td class="month">Mar</td>
+                                            <td class="month">Apr</td>
+                                            <td class="month">May</td>
+                                            <td class="month">Jun</td>
+                                            <td class="month">Jul</td>
+                                            <td class="month">Aug</td>
+                                            <td class="month">Sep</td>
+                                            <td class="month">Oct</td>
+                                            <td class="month">Nov</td>
+                                            <td class="month">Dec</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <table class="days-table">
+                                        <td class="day">Sun</td>
+                                        <td class="day">Mon</td>
+                                        <td class="day">Tue</td>
+                                        <td class="day">Wed</td>
+                                        <td class="day">Thu</td>
+                                        <td class="day">Fri</td>
+                                        <td class="day">Sat</td>
+                                    </table>
+                                    <div class="frame">
+                                        <table class="dates-table">
+                                            <tbody class="tbody">
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                                <div class="btn-groups">
+                                    <button class="button btn-sm"
+                                            id="add-button">Add Appointment
+                                    </button>
+
+                                    <button class="button btn-sm"
+                                            id="update-button">Update
+                                        Appointment
+                                    </button>
+                                    <button class="button btn-sm"
+                                            id="delete-button">Delete Appointment
+                                    </button>
+                                </div>
+
+                            </div>
+                            <div class="events-container">
+                            </div>
+                            <div class="dialog" id="dialog">
+                                <h2 class="dialog-header" id="updateDlgHd"> Add
+                                    New
+                                    Appointment </h2>
+                                <form class="form" id="form">
+                                    <div class="form-container"
+                                         style="margin-top: 10%"
+                                         align="center">
+
+                                        <label for="time">Choose time
+                                            slot:</label>
+                                        <select name="time" id="time"
+                                                class="input">
+                                            <option value="9:00 AM - 10:00 AM">
+                                                9:00 AM - 10:00 AM
+                                            </option>
+                                            <option value="10:00AM-11:00AM">
+                                                10:00AM-11:00AM
+                                            </option>
+                                            <option value="11:00AM-12:00PM">
+                                                11:00AM-12:00PM
+                                            </option>
+                                            <option value="12:00PM-1:00PM">
+                                                12:00PM-1:00PM
+                                            </option>
+                                            <option value="1:00PM-2:00PM">
+                                                1:00PM-2:00PM
+                                            </option>
+                                            <option value="2:00PM-3:00PM">
+                                                2:00PM-3:00PM
+                                            </option>
+                                            <option value="3:00PM-4:00PM">
+                                                3:00PM-4:00PM
+                                            </option>
+                                        </select>
+                                        <label class="form-label"
+                                               id="valueFromMyButton"
+                                               for="count">Number of
+                                            slots</label>
+                                        <input class="input" type="number"
+                                               id="count" min="1" max="10000"
+                                               maxlength="7">
+                                        <label for="type">Choose Type:</label>
+                                        <select name="type" id="type"
+                                                class="input type">
+                                            <option value="Test">
+                                                Test
+                                            </option>
+                                            <option value="Vaccine">
+                                                Vaccine
+                                            </option>
+                                        </select>
+
+
+                                        <input type="button" value="Cancel"
+                                               class="button"
+                                               id="cancel-button">
+                                        <input type="button" value="OK"
+                                               class="button" id="ok-button">
+
+                                    </div>
+                                </form>
+                            </div>
+                            <!--Rmz-->
+
+
+
+                            <div class="deldialog" id="deldialog">
+                                <h2 class="dialog-header" > Delete
+                                    Appointment </h2>
+                                <form class="form" id="delform">
+                                    <div class="form-container"  align="center">
+                                        <div class="event-card"
+                                             style="display:none"></div>
+                                        <input type="button" value="Cancel"
+                                               class="button"
+                                               id="cancel-delbutton">
+                                        <input type="button" value="OK"
+                                               class="button" id="ok-delbutton">
+
+                                    </div>
+                                </form>
+                            </div>
+                            <!--Rmz-->
+
+                        </div>
+
+                        <!-- Dialog Box-->
+                        <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+                                integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+                                crossorigin="anonymous">
+                        </script>
+                        <script th:src="@{/ajaxFn.js}"></script>
+                        <script th:src="@{/HC_Appt.js}"></script>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+</body>
+
+</html>
