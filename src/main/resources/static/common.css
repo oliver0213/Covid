@@ -1,0 +1,57 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+
+:root {
+    --input-padding-x: 1.5rem;
+    --input-padding-y: 0.75rem;
+}
+
+body {
+    background: black;
+    font-family: Helvetica, "Arial Narrow", sans-serif;
+
+}
+
+
+.bg-image {
+    background-image: url('/img/bk.jpeg');
+    background-position: center;
+    background-size: auto;
+
+}
+
+
+.btn-login {
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1rem;
+    border-radius: 2rem;
+}
+
+.my-form {
+    padding-top: 5.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.my-form .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.cardtoggle {
+    display: none;
+}
+
+
+/* Fallback for IE
+  -------------------------------------------------- */
+
+@media all and (-ms-high-contrast: none),
+(-ms-high-contrast: active) {
+    .form-label-group > label {
+        display: none;
+    }
+
+    .form-label-group input:-ms-input-placeholder {
+        color: #777;
+    }
+}
